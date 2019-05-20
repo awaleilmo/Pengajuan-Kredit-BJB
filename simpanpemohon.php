@@ -1,0 +1,173 @@
+<?php
+include"koneksi.php";
+session_start();
+if(!isset($_SESSION['email'])) {
+ 
+header("location:home.php?id=home");
+}else{
+$idname=$_SESSION['email'];
+$tt=mysql_query("select * from user where id_user='$idname'");
+$tmplid=mysql_fetch_array($tt);
+}
+if(isset($_POST['simpan'])){
+	$id_user=$tmplid['nourut'];
+	$kantor_cabang=$_POST['kantorcabang'];
+	$kantor_cabang_pembantu=$_POST["kantorpembantu"];
+	$nama_nasabah=$_POST['nama'];
+	$tempat_lahir=$_POST['tempat'];
+	$tgl_lahir=$_POST['tanggal'];
+	$ktp=$_POST['ktp'];
+	$npwp=$_POST['npwp'];
+	$alamat=$_POST['alamat'];
+	$kota=$_POST['kab'];
+	$kodepos=$_POST['kodepos'];
+	$telp=$_POST['telp'];
+	$hp=$_POST['hp'];
+	$kewarganegaraan=$_POST['warganegara'];
+	$status=$_POST['status'];
+	$jumlah_tanggungan=$_POST['jmlhtanggungan'];
+	$pendidikan_terakhir=$_POST['pendidikan'];
+	$nama_ibu=$_POST['namaibu'];
+	$nama_saudara_kandung=$_POST['namasaudara'];
+	$a=$_POST['alamatibu'];
+	$b=$_POST['kabibu'];
+	$c= $_POST['kodeposibu'];
+	$alamat_ibu=$a + ',' + $b + ',' + $c;
+	$telp_ibu=$_POST['telpibu'];
+	$hp_ibu=$_POST['hpibu'];
+	$status_tempat_tinggal=$_POST['statustempat'];
+	$lama_menetap=$_POST['lamamenetap'];
+	$lama_berusaha=$_POST['lamausaha'];
+	$jenis_usaha=$_POST['jenisusaha'];
+	$jenis_produk=$_POST['produk'];
+	$sistem_penjualan=$_POST['sistempenjualan'];
+	$kepemilikan_tempat_usaha=$_POST['kepemilikan'];
+	$lokasi_usaha=$_POST['lokasiusaha'];
+	$daerah_pemasaran=$_POST['pemasaran'];
+	$cabang=$_POST['cabang'];
+	$jumlah_tenaga_kerja=$_POST['jmlhtenagakerja'];
+	$penglolaan_keuangan=$_POST['penglolaankeuangan'];
+	$debitur=$_POST['debitur'];
+	$nama_bank=$_POST['namabank'];
+	$jenis_produk=$_POST['jenisproduk'];
+	$pinjaman_sisapokok=$_POST['sisapokok'];
+	$pinjaman_angsuran=$_POST['angsuran'];
+	$besar_permohonan=$_POST['besarpermohonan'];
+	$jangka_waktu=$_POST['jangkawaktu'];
+	$tujuan_pengguanaan=$_POST['tujuan'];
+	$jenis_agunan=$_POST['jenisagunan'];
+	$bukti_kepemilikan=$_POST['buktikepemilikan'];
+	$nama_pemilik_agunan=$_POST['pemilikagunan'];
+	$hubungan_dengan_pemohon=$_POST['hubunganpemohon'];
+$pemohon=mysql_query("INSERT INTO `pemohon`(
+	`Id_nasabah`,
+	`id_user`, 
+	`kantor_cabang`, 
+	`kantor_cabang_pembantu`, 
+	`nama_nasabah`, 
+	`tempat_lahir`, 
+	`tgl_lahir`,
+	`ktp`,
+	`npwp`, 
+	`alamat`,
+	`kota`,
+	`kodepos`, 
+	`telp`, 
+	`hp`, 
+	`kewarganegaraan`, 
+	`status`, 
+	`jumlah_tanggungan`, 
+	`pendidikan_terakhir`, 
+	`nama_ibu`, 
+	`nama_saudara_kandung`, 
+	`alamat_ibu`, 
+	`telp_ibu`, 
+	`hp_ibu`, 
+	`status_tempat_tinggal`,
+	`lama_menetap`, 
+	`lama_berusaha`, 
+	`jenis_usaha`, 
+	`jenis_produk`, 
+	`sistem_penjualan`, 
+	`kepemilikan_tempat_usaha`, 
+	`lokasi_usaha`, 
+	`daerah_pemasaran`, 
+	`cabang`, 
+	`jumlah_tenaga_kerja`, 
+	`penglolaan_keuangan`, 
+	`debitur`, 
+	`nama_bank`, 
+	`jenis_jasa`, 
+	`pinjaman_sisapokok`, 
+	`pinjaman_angsuran`,
+	`besar_permohonan`, 
+	`jangka_waktu`, 
+	`tujuan_pengguanaan`, 
+	`jenis_agunan`, 
+	`bukti_kepemilikan`, 
+	`nama_pemilik_agunan`, 
+	`hubungan_dengan_pemohon`
+	)
+	VALUE
+	(NULL,
+	'$id_user',
+	'$kantor_cabang',
+	'$kantor_cabang_pembantu',
+	'$nama_nasabah',
+	'$tempat_lahir',
+	'$tgl_lahir',
+	'$ktp',
+	'$npwp',
+	'$alamat',
+	'$kota',
+	'$kodepos',
+	'$telp',
+	'$hp',
+	'$kewarganegaraan',
+	'$status',
+	'$jumlah_tanggungan',
+	'$pendidikan_terakhir',
+	'$nama_ibu',
+	'$nama_saudara_kandung',
+	'$alamat_ibu',
+	'$telp_ibu',
+	'$hp_ibu',
+	'$status_tempat_tinggal',
+	'$lama_menetap',
+	'$lama_berusaha',
+	'$jenis_usaha',
+	'$jenis_produk',
+	'$sistem_penjualan',
+	'$kepemilikan_tempat_usaha',
+	'$lokasi_usaha',
+	'$daerah_pemasaran',
+	'$cabang',
+	'$jumlah_tenaga_kerja',
+	'$penglolaan_keuangan',
+	'$debitur',
+	'$nama_bank',
+	'$jenis_produk',
+	'$pinjaman_sisapokok',
+	'$pinjaman_angsuran',
+	'$besar_permohonan',
+	'$jangka_waktu',
+	'$tujuan_pengguanaan',
+	'$jenis_agunan',
+	'$bukti_kepemilikan',
+	'$nama_pemilik_agunan',
+	'$hubungan_dengan_pemohon')");
+	if($pemohon){
+		echo "<script>window.alert('Berhasil Disimpan')
+				window.location='home.php?id=home'</script>";
+		
+	}else{
+		echo "<script>window.alert('Gagal Disimpan')
+		window.location='home.php?id=home'</script>";
+		
+	}
+}else{
+	echo "<script>window.alert('Terjadi Kesalahan')
+	window.location='home.php?id=home'</script>";
+		
+}
+?>
